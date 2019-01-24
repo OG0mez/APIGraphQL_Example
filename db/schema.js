@@ -11,9 +11,20 @@ type Product {
 }
 
 type Query{
+    getProduct(_id:ID!) : Product
     allProducts: [Product]
 }
-`;
+
+input productInput{
+    title:String,
+    qty:Int
+}
+
+type Mutation{
+    createProduct(input:productInput) : Product
+    updateProduct(_id:ID!,input:productInput) : Product
+    deleteProduct(_id:ID!):Product
+}`;
 
 const schema =  makeExecutableSchema({
     typeDefs,
